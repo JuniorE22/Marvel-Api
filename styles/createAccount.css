@@ -1,0 +1,215 @@
+/*MODAL*/
+.modalNewSpecifications {
+  background-image: url("https://cdn.registerdisney.go.com/v4/asset/bundler/MARVEL/v4/images/v1/marvel-background-web.webp");
+  background-size: cover;
+  padding-bottom: 5%;
+}
+
+.marvelImg2 {
+  width: 10%;
+  position: relative;
+  left: 34em;
+  top: 2em;
+}
+
+.btnModify {
+  background-color: #e62429;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  margin-right: 3em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  border-radius: 2em;
+  height: 3em;
+}
+
+.form-group {
+  margin-right: 3em;
+  margin-left: 1em;
+}
+
+.btnModify:hover {
+  background-color: #ca2020;
+  color: #fff;
+}
+
+.btnModify:active {
+  background-color: #ca2020;
+}
+
+.modal-title {
+  font-size: xx-large;
+  margin-left: 0.3em;
+  line-height: 1em;
+}
+
+.modal-title-description {
+  font-size: 0.875rem;
+  font-weight: 400;
+  word-spacing: 0.1em;
+  margin-left: 1em;
+  margin-bottom: 2em;
+  margin-right: 4em;
+}
+
+.p-modal-title-description {
+  padding-top: 2em;
+  margin-bottom: 0em;
+}
+
+.form-control {
+  margin-bottom: 1em;
+}
+
+.titleFooter {
+  color: #0040e5;
+  padding-top: 1rem;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: -7px;
+  padding-bottom: 4px;
+  width: -webkit-fill-available;
+  margin-left: 1em;
+}
+
+.titleFooter:hover {
+  text-decoration: underline;
+}
+
+.descriptionFooter {
+  font-size: 0.8em;
+  margin-top: -7px;
+  padding-bottom: 4px;
+  padding-top: 1rem;
+  line-height: 1.5em;
+  margin-left: 1em;
+  margin-right: 2em;
+}
+
+.moreDetails {
+  color: #000;
+  font-weight: 200;
+}
+
+.moreDetails:hover {
+  color: #0040e5;
+}
+
+.spanMoreDetails {
+  margin-top: 1em;
+  line-height: 3em;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+}
+
+.spanMoreDetails:hover {
+  color: #0040e5;
+}
+
+.logInLogos {
+  width: 100%;
+  padding-right: 1.7em;
+  margin-right: -0.4em;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  margin-left: 29%;
+  margin-right: 29%;
+  background-color: #fff;
+  border-radius: 0.5em;
+  margin-top: 5%;
+  padding-top: 2%;
+}
+
+.btn-close {
+  background-color: white;
+  border-radius: 10em;
+  outline-color: #e62429;
+  float: right;
+  margin-right: 2em;
+  margin-top: 2em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.btn-back {
+  border-radius: 10em;
+  outline-color: #e62429;
+  float: left;
+  margin-left: 2em;
+  margin-top: 3em;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.bi {
+  width: 5em;
+  height: 2em;
+  fill: currentcolor;
+  color: #bfc4cb;
+  cursor: pointer;
+  position: relative;
+  bottom: 1em;
+}
+
+.bi:hover {
+  color: #fff;
+}
+
+.modal-content {
+  padding: 2.5em;
+}
+
+.modal-header {
+  margin-bottom: 1em;
+}
+
+.text-block {
+  font-size: 0.875rem;
+  font-weight: 400;
+  word-spacing: 0.1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+.reveal-btn {
+  float: right;
+  position: relative;
+  bottom: 6.3em;
+  right: 1em;
+  width: 1.5em;
+}
+
+.inputDate {
+  text-transform: uppercase;
+  color: #000;
+}
+
+.input-checkbox,
+.checkbox-text {
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 400;
+  word-spacing: 0.1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  margin-right: 2em;
+}
+
+.text-block,
+.legal-locale {
+  font-size: 0.875rem;
+  font-weight: 400;
+  word-spacing: 0.1em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  margin-right: 2em;
+  line-height: 1.25rem;
+  color: #5f6166;
+}

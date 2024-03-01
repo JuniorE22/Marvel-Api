@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marvel Developer Portal</title>
+  <link rel="shortcut icon" href="./images/mainIcon.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/signIn.css" />
+</head>
+
+<body>
+  <!-- Modal -->
+  <div class="modalNewSpecifications" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <img class="marvelImg2" src="https://cdn.registerdisney.go.com/v4/asset/bundler/MARVEL/v4/images/v1/marvel-logo.svg"
+      alt="marvelImg" />
+    <a href="../index.html" type="button" class="btn-close"></a>
+    <a href="./logIn.html" class="btn-back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+      </svg>
+    </a>
+    <div class="modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Good news, you already have an account
+          </h5>
+        </div>
+        <div class="modal-body modal-title-description">
+          Since you’ve already used your email to sign up for one or more
+          services within The Walt Disney Family of Companies, you can now log
+          into Marvel using <strong class="emailContent">example@example.com</strong>
+          <a class="editBtn" href="#">edit</a>
+        </div>
+        <p class="text-block">Enter your current password to log in.</p>
+        <div class="form-group">
+          <div class="password-container">
+            <input autocomplete="off" type="password" class="form-control" id="passwordField"
+              aria-describedby="emailHelp" placeholder="Password" />
+            <img class="reveal-btn" id="revealButton" src="/images/ojo.png" onclick="revealPassword()" />
+          </div>
+        </div>
+        <button type="button" class="btn btnModify">Continue</button>
+        <div class="modal-footer">
+          <h3 class="titleFooter">Having trouble logging in?</h3>
+          <p class="descriptionFooter">
+            This email and password lets you log into services and experiences
+            across The Walt Disney Family of Companies, such as ESPN, Walt
+            Disney World, Marvel,
+            <a class="moreDetails" target="_blank" rel="noopener" href="https://mydisneyaccount.com/explore"
+              tracked-link="AND_MORE_LINK">
+              and more.</a>
+            <br />
+            <a class="spanMoreDetails"
+              href="https://cdn.registerdisney.go.com/v4/bundle/web/MARVEL-MARVEL.COM.WEB/en-US?logLevel=INFO#">If
+              you’ve forgotten the password you use for those sites, click
+              here.</a>
+          </p>
+          <img class="logInLogos" src="/images/logInLogos.png" alt="logInLogos" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/modulesJS/revealPassword.js"></script>
+  <script src="/JS/signIn.js"></script>
+</body>
+
+</html>
