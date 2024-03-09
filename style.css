@@ -1,5 +1,16 @@
 .user {
-    height: 50px;
+    height: 54px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 0 30px;
+    cursor: pointer;
+    border: 1px solid #393939;
+
+}
+.containerLogout {
+    height: 54px;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -11,6 +22,11 @@
 }
 
 .login {
+    text-decoration: none;
+    font: 600 12px/1 "RobotoCondensed Bold", "Trebuchet MS", Helvetica, Arial, sans-serif;
+    color: #fff;
+}
+.logOut {
     text-decoration: none;
     font: 600 12px/1 "RobotoCondensed Bold", "Trebuchet MS", Helvetica, Arial, sans-serif;
     color: #fff;
@@ -33,7 +49,7 @@
 }
 
 .search {
-    height: 50px;
+    height: 54px;
     display: inline-flex;
     flex-direction: row;
     align-items: center;

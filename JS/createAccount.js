@@ -25,7 +25,7 @@ btnContinue.addEventListener('click', () => {
         }
         const value = JSON.stringify({newContact});
         localStorage.setItem(email, value);
-
+        window.location.href = "/index.html?email=" + email
     } else {
         alert('llena todos los campos')
     }
