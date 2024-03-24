@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Api</title>
+    <link rel="shortcut icon" href="../images/man.png">
+    <link rel="stylesheet" href="../styles/tvShows.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container-topNav" style="background-color: #202020;">
+            <div class="user">
+                <a class="login" href="logIn.html">Login/Join</a>
+            </div>
+            <a href="../index.html" class="image-logo">
+                <img src="../images/marvel-logo-34283.png" class="img" alt="...">
+            </a>
+            <div class="search">
+                <div class="d-flex" role="search">
+
+                    <input class="form-control me-2" type="search" id="inputSearch" placeholder="Search"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success" id="btnSearch">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg" style="background-color: #202020;">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <ul class="ul-container">
+                            <li class="li-nav"><a class="nav-link" href="https://www.marvel.com/articles">News</a></li>
+                            <li class="li-nav"><a class="nav-link" href="./comics.html" id="comics">Comics</a></li>
+                            <li class="li-nav"><a class="nav-link" href="./characters.html" id="characters">Characters</a></li>
+                            <li class="li-nav"><a class="nav-link" href="./tvShows.html">TV Shows</a></li>
+                            <li class="li-nav"><a class="nav-link" href="./games.html">Games</a></li>
+                            <li class="li-nav"><a class="nav-link" href="https://www.marvel.com/watch">Videos</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+        
+    </header>
+
+    <section class="portal-banner">
+        <section class="headline">
+
+            <span class="line1">TV SHOWS</span>
+            <span class="line2">Explore the characters and stories that shape Marvel TV!</span>
+
+        </section>
+        <img class="principal-banner" src="../images/banner tv-show.jpg" alt="Marvel">
+    </section>
+
+    <a href="" class="cta-btn cta-btn--red cta-btn--solid" hidden="true">
+        <section class="innerFill">Get Started</section>
+    </a>
+    <div class="comicsContainer">
+        <div class="row row-cols-5" id="rowContainer">
+
+        </div>
+
+        <ul class="pagination justify-content-center" id="pagination">
+
+
+        </ul>
+
+        <footer class="main-footer">
+            <div class="full-content">
+                <div class="main-footer__links">
+                    <a href="" class=footer-logo>
+                        <img src="../images/Marvel-footer.png" alt="Logo Footer" class="img-logo">
+                    </a>
+                </div>
+                <nav class="main-footer__primary-links" aria-label="Primary footer navigtion">
+                    <ul>
+                        <li class="main-footer__link"><a href="https://www.marvel.com/corporate/about">About Marvel</a>
+                        </li>
+                        <li class="main-footer__link"><a href="https://help.marvel.com">Help/FAQs</a></li>
+                        <li class="main-footer__link"><a
+                                href="https://jobs.disneycareers.com/search-jobs?orgIds=391-1635-24091&amp;ascf=[{%22key%22:%22custom_fields%252EIndustryCustomField%22,%22value%22:%22Marvel%20Entertainment%22}]">Careers</a>
+                        </li>
+                        <li class="main-footer__link"><a href="https://www.marvel.com/corporate/interns">Internships</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="main-footer__secondary-links" aria-label="Secondary footer navigtion">
+                    <ul>
+                        <li class="main-footer__link"><a
+                                href="https://www.marvel.com/corporate/advertising">Advertising</a>
+                        </li>
+                        <li class="main-footer__link"><a
+                                href="https://www.disneyplus.com/brand/marvel?cid=DTCI-Synergy-Marvel-Site-Acquisition-Library-US-Marvel-NA-EN-NavFooter-Marvel_DisneyPlus_NavFooter_Evergreen-NA">Disney+</a>
+                        </li>
+                        <li class="main-footer__link"><a href="https://www.marvelhq.com">Marvelhq.com</a></li>
+                        <li class="main-footer__link"><a href="https://www.marvel.com/redeem">Redeem Digital Comics</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="promo-link">
+                    <div class="promotion">
+                        <a class="promotion-link"
+                            href="https://www.marvel.com/insider?cid=Dcom_navigation_20200929_insider_footer">
+                            <div class="container-image">
+                                <img src="../images/marvel_insider.png" alt="Marvel Insider Logo"
+                                    class="promotion-image">
+                            </div>
+                            <div class="main-footer__promotion-info">
+                                <h4 class="main-footer__promotion-title">Marvel Insider</h4>
+                                <p class="main-footer__promotion-description">Get Rewarded for Being a Marvel Fan</p>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="promotion">
+                        <a class="promotion-link"
+                            href="https://www.marvel.com/insider?cid=Dcom_navigation_20200929_insider_footer">
+                            <div class="container-image">
+                                <img src="../images/mu-logo-w-nav-2.png" alt="Marvel Insider Logo"
+                                    class="promotion-image">
+                            </div>
+                            <div class="main-footer__promotion-info">
+                                <h4 class="main-footer__promotion-title">Marvel Unlimited</h4>
+                                <p class="main-footer__promotion-description">Access Over 30,000+ Digital Comics</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </nav>
+                <nav class="follow-footer">
+                    <h4 class="follow-title">Follow Marvel</h4>
+                    <img class="footer-social" src="../images/follow.png" alt="Follow">
+                </nav>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script type="module" src="../JS/tvShows.js"></script>
+
+
+</body>
+
+</html>

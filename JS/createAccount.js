@@ -12,7 +12,6 @@ emailContent.textContent = email;
 
 btnContinue.addEventListener('click', () => {
     debugger
-
     let firstName = firstNameInput.value
     let lastName = lastNameInput.value
     let password = passwordInput.value

@@ -2,8 +2,8 @@ let login = document.querySelector('.login')
 let containerTopNav = document.querySelector('.container-topNav')
 let bntGetStarted = document.querySelector('.cta-btn')
 let imgMarvel = document.querySelector('.image-logo')
-
-
+let comics = document.querySelector('#comics')
+let characters = document.querySelector('#characters')
 
 
 let urlParams = new URLSearchParams(window.location.search)
@@ -13,15 +13,18 @@ function sessionActive() {
 
     let userActive = JSON.parse(localStorage.getItem(email))
     let logOut
+    debugger
+    for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let value = JSON.parse(localStorage.getItem(key));
+   
+        if(value.newContact.active === true){
 
-    if (email === null) {
-    } else if (userActive.newContact.email === email && userActive.newContact.active === true) {
-        login.href = "#"
-        login.textContent = userActive.newContact.firstName + " " + userActive.newContact.lastName
-        imgMarvel.href = window.location.search
-        bntGetStarted.remove()
+        login.textContent = value.newContact.firstName + " " + value.newContact.lastName
+        imgMarvel.href = "../index.html"
         let divLogOut = document.createElement('div');
         divLogOut.classList.add("containerLogout")
+        bntGetStarted.remove()
         logOut = document.createElement('a');
         logOut.classList.add("logOut")
         logOut.textContent = "Log Out"
@@ -30,24 +33,21 @@ function sessionActive() {
         containerTopNav.appendChild(divLogOut)
 
         logOut.addEventListener('click', () => {
-          debugger
-            
+
             let respond = confirm("¿Estas seguro que quieres cerrar sesion?")
             if (respond) {
-                userActive.newContact.active = false
-                const value = JSON.stringify(userActive );
-                localStorage.setItem(email, value);
+                value.newContact.active = false
+                const respond = JSON.stringify(value);
+                localStorage.setItem(key, respond);
                 window.location.href = "/index.html"
             }
         })
     }
-
-
-
-
+    }
 }
-
 
 window.onload = () => {
     sessionActive();
 }
+
+export {sessionActive}
