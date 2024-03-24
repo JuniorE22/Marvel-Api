@@ -4,10 +4,8 @@ let allComicsData = [];
 let allPagination = [];
 let rowContainer = document.querySelector('#rowContainer')
 let paginationContainer = document.querySelector("#pagination")
-let comics = document.querySelector('#comics')
-let characters = document.querySelector('#characters')
 let inputSearch = document.querySelector('#inputSearch')
-
+let GET_URL = "http://gateway.marvel.com/v1/public/comics?"
 
 let currentPage = 1;
 let liPrevious = document.createElement("li");
@@ -15,27 +13,17 @@ let aPrevious = document.createElement("a");
 let liNext = document.createElement("li");
 let aNext = document.createElement("a");
 
-let login = document.querySelector('.login')
-let containerTopNav = document.querySelector('.container-topNav')
-let imgMarvel = document.querySelector('.image-logo')
-
-let urlParams = new URLSearchParams(window.location.search)
-let email = urlParams.get('email')
-
-
 const getComics = async (params = {}) => {
     try {
-        debugger
         const mainParams = {
             title: params.title,
             ts: '1',
             apikey: 'f261b7a9df35311738cdc220e78c3bf9',
             hash: '8147a92999450be7f35b0b0003b77eed',
             offset: currentPage - 1,
-
         };
 
-        const response = await axios.get('http://gateway.marvel.com/v1/public/comics?', {
+        const response = await axios.get(GET_URL, {
             params: mainParams
         });
 
@@ -46,19 +34,14 @@ const getComics = async (params = {}) => {
     } catch (error) {
         console.log(error)
     }
-
 }
 
 const createElements = () => {
-
     paginationContainer.innerHTML = ""
     createPagination();
-
-
     rowContainer.innerHTML = "";
 
     allComicsData.forEach(comicsData => {
-
         let divCol = document.createElement("div")
         let column = document.createElement("div")
         let imgComics = document.createElement("img");
@@ -91,13 +74,11 @@ const createElements = () => {
 } 
 
 const createElementsSearch = () => {
-    debugger
         paginationContainer.innerHTML = ""
         createPaginationSearch();
-    
         rowContainer.innerHTML = "";
+
         allComicsData.forEach(comicsData => {
-    
             let divCol = document.createElement("div")
             let column = document.createElement("a")
             let imgComics = document.createElement("img");
@@ -130,13 +111,11 @@ const createElementsSearch = () => {
     
 }
 const createPagination = () => {
-
     liPrevious.className = "page-item disabled";
     aPrevious.className = "page-link";
     aPrevious.setAttribute('tabindex', "-1")
     aPrevious.setAttribute('aria-disabled', "true")
     aPrevious.textContent = "Previous"
-
 
     if (currentPage > 1) {
         liPrevious.className = "page-item";
@@ -144,11 +123,8 @@ const createPagination = () => {
         aPrevious.setAttribute('aria-disabled', "false")
         aPrevious.href = "#"
     }
-
-
     paginationContainer.appendChild(liPrevious);
     liPrevious.appendChild(aPrevious);
-
 
     if (currentPage < 5) {
 
@@ -157,7 +133,6 @@ const createPagination = () => {
             liPagination.className = "page-item";
             const aPage = document.createElement("a");
             aPage.href = "#";
-
 
             aPage.className = "page-link ";
             aPage.textContent = `${index}`
@@ -198,7 +173,6 @@ const createPagination = () => {
         liPagination.appendChild(aPage);
 
         aPage.addEventListener("click", async () => {
-
             aPage.href = "#";
             currentPage = aPage.textContent
             liPagination.className = "page-item active";
@@ -222,53 +196,58 @@ const createPagination = () => {
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == 2) {
                 aPage.textContent = "..."
                 aPage.className = "page-link disabled";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == 3) {
                 aPage.textContent = currentPage - 1
                 aPage.className = "page-link";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+            
             if (index == 4) {
                 aPage.textContent = currentPage = parseInt(currentPage)
                 aPage.className = "page-link active";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == 5) {
                 aPage.textContent = currentPage + 1
                 aPage.className = "page-link";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == 6) {
                 aPage.textContent = currentPage + 2
                 aPage.className = "page-link ";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == 7) {
                 aPage.textContent = "..."
                 aPage.className = "page-link disabled";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
-
             }
+
             if (index == 8) {
                 aPage.textContent = `${allPagination.data.total}`
                 aPage.className = "page-link";
 
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
-
             }
-            aPage.addEventListener("click", async () => {
 
+            aPage.addEventListener("click", async () => {
                 aPage.href = "#";
                 currentPage = aPage.textContent
                 liPagination.className = "page-item active";
@@ -289,31 +268,30 @@ const createPagination = () => {
             const aPage = document.createElement("a");
             aPage.href = "#";
 
-
             aPage.className = "page-link ";
             aPage.textContent = `${index}`
 
             if (currentPage == index) {
                 aPage.className = "page-link active";
             }
+
             if (index == allPagination.data.total - 5) {
                 aPage.textContent = "1"
                 aPage.className = "page-link";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
+
             if (index == allPagination.data.total - 4) {
                 aPage.textContent = "..."
                 aPage.className = "page-link disabled";
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
-
             paginationContainer.appendChild(liPagination);
             liPagination.appendChild(aPage);
 
             aPage.addEventListener("click", async () => {
-
                 aPage.href = "#";
                 currentPage = aPage.textContent
                 liPagination.className = "page-item active";
@@ -331,16 +309,13 @@ const createPagination = () => {
     aNext.textContent = "Next"
 
     if (currentPage == allPagination.data.total) {
-
         liNext.className = "page-item disable";
         aNext.className = "page-link disabled";
         aNext.textContent = "Next"
-
     }
 
     paginationContainer.appendChild(liNext);
     liNext.appendChild(aNext);
-
 }
 
 const createPaginationSearch = () => {
@@ -351,7 +326,6 @@ const createPaginationSearch = () => {
     aPrevious.setAttribute('aria-disabled', "true")
     aPrevious.textContent = "Previous"
 
-
     if (currentPage > 1) {
         liPrevious.className = "page-item";
         aPrevious.className = "page-link";
@@ -359,17 +333,14 @@ const createPaginationSearch = () => {
         aPrevious.href = "#"
     }
 
-
     paginationContainer.appendChild(liPrevious);
     liPrevious.appendChild(aPrevious);
-
 
     for (let index = 1; index <= allPagination.data.total; index++) {
         const liPagination = document.createElement("li");
         liPagination.className = "page-item";
         const aPage = document.createElement("a");
         aPage.href = "#";
-
 
         aPage.className = "page-link ";
         aPage.textContent = `${index}`
@@ -398,13 +369,10 @@ const createPaginationSearch = () => {
     aNext.textContent = "Next"
 
     if (currentPage == allPagination.data.total) {
-
         liNext.className = "page-item disable";
         aNext.className = "page-link disabled";
         aNext.textContent = "Next"
-
     }
-
     paginationContainer.appendChild(liNext);
     liNext.appendChild(aNext);
 }
@@ -422,7 +390,7 @@ const previeousPage = async () => {
     createElements();
 }
 
-const buildParamsSearch = (number) => {
+const buildParamsSearch = () => {
     const params = {
         title: encodeURIComponent(inputSearch.value),
         ts: '1',
@@ -432,7 +400,7 @@ const buildParamsSearch = (number) => {
     };
     return params;
 }
-const buildParams = (number) => {
+const buildParams = () => {
     const params = {
         ts: '1',
         apikey: 'f261b7a9df35311738cdc220e78c3bf9',
@@ -442,7 +410,6 @@ const buildParams = (number) => {
     return params;
 }
 btnSearch.addEventListener("click", async () => {
-    debugger
     if (inputSearch.value == "") {
         btnSearch.href = window.location.search
 
@@ -467,7 +434,6 @@ aPrevious.addEventListener("click", async () => {
 
 aNext.addEventListener("click", async () => {
     await nextPage();
-
     if (currentPage == allPagination.data.total) {
         liNext.className = "page-item disable";
     }
