@@ -6,9 +6,7 @@ let email = urlParams.get('email')
 
 emailContent.textContent = email;
 
-
 btnContinue.addEventListener('click', () => {
-    debugger
     let inputPassword = document.querySelector('#passwordField').value;
     let emailExist = JSON.parse(localStorage.getItem(email));
 
