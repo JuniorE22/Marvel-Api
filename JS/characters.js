@@ -51,13 +51,18 @@ const createElements = () => {
         let premiereCharacter = document.createElement("p");
 
         divCol.className = "col"
-        divCol.style = "padding-bottom: 10px"
-        column.className = "card";
-        column.style = "width: 13rem";
+        divCol.style = "padding-bottom: 5rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsCharacters.html?characters=characters?id=" + characterData.id
         imgCharacter.className = "card-img-top";
         imgCharacter.src = `${characterData.thumbnail.path}.${characterData.thumbnail.extension}`
         divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
         titleCharacter.className = "card-text";
+        titleCharacter.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleCharacter.className = "card-title text-truncate";
         titleCharacter.setAttribute('data-bs-toggle', "tooltip")
         titleCharacter.setAttribute('data-bs-placement', "top")
@@ -72,9 +77,9 @@ const createElements = () => {
         divDescription.appendChild(premiereCharacter);
     })
 }
-const createElementsSearch = () => {
+const createElementsBySearch = () => {
     paginationContainer.innerHTML = ""
-    createPaginationSearch();
+    createPaginationBySearch();
     rowContainer.innerHTML = "";
 
     allCharacterData.forEach(characterData => {
@@ -86,13 +91,18 @@ const createElementsSearch = () => {
         let premiereCharacter = document.createElement("p");
 
         divCol.className = "col"
-        divCol.style = "padding-bottom: 10px"
-        column.className = "card";
-        column.style = "width: 13rem";
+        divCol.style = "padding-bottom: 5rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsCharacters.html?characters=characters?id=" + characterData.id
         imgCharacter.className = "card-img-top";
         imgCharacter.src = `${characterData.thumbnail.path}.${characterData.thumbnail.extension}`
         divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
         titleCharacter.className = "card-text";
+        titleCharacter.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleCharacter.className = "card-title text-truncate";
         titleCharacter.setAttribute('data-bs-toggle', "tooltip")
         titleCharacter.setAttribute('data-bs-placement', "top")
@@ -153,7 +163,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -166,7 +176,6 @@ const createPagination = () => {
         liPagination.className = "page-item";
         const aPage = document.createElement("a");
         aPage.href = "#";
-        debugger
         aPage.textContent = `${allPagination.data.total}`
         aPage.className = "page-link";
 
@@ -175,7 +184,7 @@ const createPagination = () => {
 
         aPage.addEventListener("click", async () => {
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
             const params = buildParams();
@@ -251,7 +260,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -295,7 +304,7 @@ const createPagination = () => {
             aPage.addEventListener("click", async () => {
 
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -320,7 +329,7 @@ const createPagination = () => {
     liNext.appendChild(aNext);
 }
 
-const createPaginationSearch = () => {
+const createPaginationBySearch = () => {
 
     liPrevious.className = "page-item disabled";
     aPrevious.className = "page-link";
@@ -355,12 +364,12 @@ const createPaginationSearch = () => {
 
         aPage.addEventListener("click", async () => {
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
-            const params = buildParamsSearch();
+            const params = buildParamsBySearch();
             await getCharacters(params);
-            createElementsSearch();
+            createElementsBySearch();
         })
     }
 
@@ -393,7 +402,7 @@ const previeousPage = async () => {
     createElements();
 }
 
-const buildParamsSearch = () => {
+const buildParamsBySearch = () => {
     const params = {
         name: inputSearch.value,
         ts: '1',
@@ -419,9 +428,9 @@ btnSearch.addEventListener("click", async () => {
         btnSearch.href = window.location.search
     } else {
         currentPage = 1;
-        const params = buildParamsSearch();
+        const params = buildParamsBySearch();
         await getCharacters(params);
-        createElementsSearch();
+        createElementsBySearch();
     }
 })
 

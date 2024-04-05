@@ -1,4 +1,4 @@
-import {sessionActive} from "../main.js"
+import { sessionActive } from "../main.js"
 
 let allComicsData = [];
 let allPagination = [];
@@ -40,29 +40,76 @@ const createElements = () => {
     paginationContainer.innerHTML = ""
     createPagination();
     rowContainer.innerHTML = "";
-
     allComicsData.forEach(comicsData => {
+        debugger
         let divCol = document.createElement("div")
-        let column = document.createElement("div")
+        let column = document.createElement("a")
         let imgComics = document.createElement("img");
         let divDescription = document.createElement("div");
         let titleComics = document.createElement("h4");
-        let premiereComics = document.createElement("p");
-        
+
         divCol.className = "col"
-        divCol.style = "padding-bottom: 10px"
-        column.className = "card";
-        column.style = "width: 13rem";
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsComics.html?comics=comics?id=" + comicsData.id
         imgComics.className = "card-img-top";
         imgComics.src = `${comicsData.thumbnail.path}.${comicsData.thumbnail.extension}`
         divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
         titleComics.className = "card-text";
+        titleComics.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleComics.className = "card-title text-truncate";
         titleComics.setAttribute('data-bs-toggle', "tooltip")
         titleComics.setAttribute('data-bs-placement', "top")
         titleComics.setAttribute('data-bs-title', `${comicsData.title}`)
         titleComics.textContent = comicsData.title;
-        premiereComics.textContent = comicsData.type;
+
+
+        rowContainer.appendChild(divCol);
+        divCol.appendChild(column);
+        column.appendChild(imgComics);
+        column.appendChild(divDescription);
+        divDescription.appendChild(titleComics);
+    })
+}
+
+const createElementsBySearch = () => {
+    paginationContainer.innerHTML = ""
+    createPaginationBySearch();
+    rowContainer.innerHTML = "";
+
+
+    allComicsData.forEach(comicsData => {
+
+        let divCol = document.createElement("div")
+        let column = document.createElement("a")
+        let imgComics = document.createElement("img");
+        let divDescription = document.createElement("div");
+        let titleComics = document.createElement("h5");
+        let premiereComics = document.createElement("p");
+
+        divCol.className = "col"
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsComics.html?comics=comics?id=" + comicsData.id
+        imgComics.className = "card-img-top";
+        imgComics.src = `${comicsData.thumbnail.path}.${comicsData.thumbnail.extension}`
+        divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
+        titleComics.className = "card-text";
+        titleComics.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        titleComics.className = "card-title text-truncate";
+        titleComics.setAttribute('data-bs-toggle', "tooltip")
+        titleComics.setAttribute('data-bs-placement', "top")
+        titleComics.setAttribute('data-bs-title', `${comicsData.title}`)
+        titleComics.textContent = comicsData.title;
+
 
         rowContainer.appendChild(divCol);
         divCol.appendChild(column);
@@ -71,44 +118,7 @@ const createElements = () => {
         divDescription.appendChild(titleComics);
         divDescription.appendChild(premiereComics);
     })
-} 
 
-const createElementsSearch = () => {
-        paginationContainer.innerHTML = ""
-        createPaginationSearch();
-        rowContainer.innerHTML = "";
-
-        allComicsData.forEach(comicsData => {
-            let divCol = document.createElement("div")
-            let column = document.createElement("a")
-            let imgComics = document.createElement("img");
-            let divDescription = document.createElement("div");
-            let titleComics = document.createElement("h5");
-            let premiereComics = document.createElement("p");
-    
-            divCol.className = "col"
-            divCol.style = "padding-bottom: 10px"
-            column.className = "card";
-            column.style = "width: 13rem";
-            imgComics.className = "card-img-top";
-            imgComics.src = `${comicsData.thumbnail.path}.${comicsData.thumbnail.extension}`
-            divDescription.className = "card-body";
-            titleComics.className = "card-text";
-            titleComics.className = "card-title text-truncate";
-            titleComics.setAttribute('data-bs-toggle', "tooltip")
-            titleComics.setAttribute('data-bs-placement', "top")
-            titleComics.setAttribute('data-bs-title', `${comicsData.title}`)
-            titleComics.textContent = comicsData.title;
-            
-    
-            rowContainer.appendChild(divCol);
-            divCol.appendChild(column);
-            column.appendChild(imgComics);
-            column.appendChild(divDescription);
-            divDescription.appendChild(titleComics);
-            divDescription.appendChild(premiereComics);
-        })
-    
 }
 const createPagination = () => {
     liPrevious.className = "page-item disabled";
@@ -152,7 +162,7 @@ const createPagination = () => {
             aPage.addEventListener("click", async () => {
 
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -165,7 +175,6 @@ const createPagination = () => {
         liPagination.className = "page-item";
         const aPage = document.createElement("a");
         aPage.href = "#";
-        debugger
         aPage.textContent = `${allPagination.data.total}`
         aPage.className = "page-link";
 
@@ -174,7 +183,7 @@ const createPagination = () => {
 
         aPage.addEventListener("click", async () => {
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
             const params = buildParams();
@@ -210,7 +219,7 @@ const createPagination = () => {
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
-            
+
             if (index == 4) {
                 aPage.textContent = currentPage = parseInt(currentPage)
                 aPage.className = "page-link active";
@@ -249,7 +258,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -293,7 +302,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -318,7 +327,7 @@ const createPagination = () => {
     liNext.appendChild(aNext);
 }
 
-const createPaginationSearch = () => {
+const createPaginationBySearch = () => {
 
     liPrevious.className = "page-item disabled";
     aPrevious.className = "page-link";
@@ -354,12 +363,12 @@ const createPaginationSearch = () => {
         aPage.addEventListener("click", async () => {
 
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
-            const params = buildParamsSearch();
+            const params = buildParamsBySearch();
             await getComics(params);
-            createElementsSearch();
+            createElementsBySearch();
         })
     }
 
@@ -390,7 +399,7 @@ const previeousPage = async () => {
     createElements();
 }
 
-const buildParamsSearch = () => {
+const buildParamsBySearch = () => {
     const params = {
         title: encodeURIComponent(inputSearch.value),
         ts: '1',
@@ -415,9 +424,9 @@ btnSearch.addEventListener("click", async () => {
 
     } else {
         currentPage = 1;
-        const params = buildParamsSearch();
+        const params = buildParamsBySearch();
         await getComics(params);
-        createElementsSearch();
+        createElementsBySearch();
     }
 })
 
@@ -439,8 +448,9 @@ aNext.addEventListener("click", async () => {
     }
 })
 
-window.onload = async() => {
+window.onload = async () => {
     sessionActive();
-   await getComics();
-   createElements();
+    await getComics();
+    createElements();
+
 }

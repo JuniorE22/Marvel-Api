@@ -1,4 +1,4 @@
-import {sessionActive} from "../main.js"
+import { sessionActive } from "../main.js"
 
 let allTvShowsData = [];
 let allPagination = [];
@@ -45,19 +45,24 @@ const createElements = () => {
     allTvShowsData.forEach(tvShowsData => {
 
         let divCol = document.createElement("div")
-        let column = document.createElement("div")
+        let column = document.createElement("a")
         let imgTvShow = document.createElement("img");
         let divDescription = document.createElement("div");
         let titleTvShow = document.createElement("h4");
-        
+
         divCol.className = "col"
-        divCol.style = "padding-bottom: 10px"
-        column.className = "card";
-        column.style = "width: 13rem";
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsTvShows.html?series=series?id=" + tvShowsData.id
         imgTvShow.className = "card-img-top";
         imgTvShow.src = `${tvShowsData.thumbnail.path}.${tvShowsData.thumbnail.extension}`
         divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
         titleTvShow.className = "card-text";
+        titleTvShow.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleTvShow.className = "card-title text-truncate";
         titleTvShow.setAttribute('data-bs-toggle', "tooltip")
         titleTvShow.setAttribute('data-bs-placement', "top")
@@ -70,44 +75,49 @@ const createElements = () => {
         column.appendChild(divDescription);
         divDescription.appendChild(titleTvShow);
     })
-} 
+}
 
-const createElementsSearch = () => {
-        paginationContainer.innerHTML = ""
-        createPaginationSearch();
-        rowContainer.innerHTML = "";
+const createElementsBySearch = () => {
+    paginationContainer.innerHTML = ""
+    createPaginationBySearch();
+    rowContainer.innerHTML = "";
 
-        allTvShowsData.forEach(tvShowsData => {
-    
-            let divCol = document.createElement("div")
-            let column = document.createElement("a")
-            let imgTvShow = document.createElement("img");
-            let divDescription = document.createElement("div");
-            let titleTvShow = document.createElement("h5");
-            let premiereTvShow = document.createElement("p");
-    
-            divCol.className = "col"
-            divCol.style = "padding-bottom: 10px"
-            column.className = "card";
-            column.style = "width: 13rem";
-            imgTvShow.className = "card-img-top";
-            imgTvShow.src = `${tvShowsData.thumbnail.path}.${tvShowsData.thumbnail.extension}`
-            divDescription.className = "card-body";
-            titleTvShow.className = "card-text";
-            titleTvShow.className = "card-title text-truncate";
-            titleTvShow.setAttribute('data-bs-toggle', "tooltip")
-            titleTvShow.setAttribute('data-bs-placement', "top")
-            titleTvShow.setAttribute('data-bs-title', `${tvShowsData.title}`)
-            titleTvShow.textContent = tvShowsData.title;
-            
-    
-            rowContainer.appendChild(divCol);
-            divCol.appendChild(column);
-            column.appendChild(imgTvShow);
-            column.appendChild(divDescription);
-            divDescription.appendChild(titleTvShow);
-            divDescription.appendChild(premiereTvShow);
-        })
+    allTvShowsData.forEach(tvShowsData => {
+
+        let divCol = document.createElement("div")
+        let column = document.createElement("a")
+        let imgTvShow = document.createElement("img");
+        let divDescription = document.createElement("div");
+        let titleTvShow = document.createElement("h5");
+        let premiereTvShow = document.createElement("p");
+
+        divCol.className = "col"
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsTvShows.html?series=series?id=" + tvShowsData.id
+        imgTvShow.className = "card-img-top";
+        imgTvShow.src = `${tvShowsData.thumbnail.path}.${tvShowsData.thumbnail.extension}`
+        divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
+        titleTvShow.className = "card-text";
+        titleTvShow.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        titleTvShow.className = "card-title text-truncate";
+        titleTvShow.setAttribute('data-bs-toggle', "tooltip")
+        titleTvShow.setAttribute('data-bs-placement', "top")
+        titleTvShow.setAttribute('data-bs-title', `${tvShowsData.title}`)
+        titleTvShow.textContent = tvShowsData.title;
+
+
+        rowContainer.appendChild(divCol);
+        divCol.appendChild(column);
+        column.appendChild(imgTvShow);
+        column.appendChild(divDescription);
+        divDescription.appendChild(titleTvShow);
+        divDescription.appendChild(premiereTvShow);
+    })
 }
 const createPagination = () => {
 
@@ -152,9 +162,8 @@ const createPagination = () => {
             liPagination.appendChild(aPage);
 
             aPage.addEventListener("click", async () => {
-
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -167,7 +176,6 @@ const createPagination = () => {
         liPagination.className = "page-item";
         const aPage = document.createElement("a");
         aPage.href = "#";
-        debugger
         aPage.textContent = `${allPagination.data.total}`
         aPage.className = "page-link";
 
@@ -175,9 +183,8 @@ const createPagination = () => {
         liPagination.appendChild(aPage);
 
         aPage.addEventListener("click", async () => {
-
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
             const params = buildParams();
@@ -253,7 +260,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -297,7 +304,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -322,7 +329,7 @@ const createPagination = () => {
     liNext.appendChild(aNext);
 }
 
-const createPaginationSearch = () => {
+const createPaginationBySearch = () => {
 
     liPrevious.className = "page-item disabled";
     aPrevious.className = "page-link";
@@ -356,14 +363,13 @@ const createPaginationSearch = () => {
         liPagination.appendChild(aPage);
 
         aPage.addEventListener("click", async () => {
-
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
-            const params = buildParamsSearch();
+            const params = buildParamsBySearch();
             await getTvShows(params);
-            createElementsSearch();
+            createElementsBySearch();
         })
     }
 
@@ -373,11 +379,9 @@ const createPaginationSearch = () => {
     aNext.textContent = "Next"
 
     if (currentPage == allPagination.data.total) {
-
         liNext.className = "page-item disable";
         aNext.className = "page-link disabled";
         aNext.textContent = "Next"
-
     }
 
     paginationContainer.appendChild(liNext);
@@ -397,7 +401,7 @@ const previeousPage = async () => {
     createElements();
 }
 
-const buildParamsSearch = () => {
+const buildParamsBySearch = () => {
     const params = {
         title: encodeURIComponent(inputSearch.value),
         ts: '1',
@@ -417,15 +421,14 @@ const buildParams = () => {
     return params;
 }
 btnSearch.addEventListener("click", async () => {
-    debugger
     if (inputSearch.value == "") {
         btnSearch.href = window.location.search
 
     } else {
         currentPage = 1;
-        const params = buildParamsSearch();
+        const params = buildParamsBySearch();
         await getTvShows(params);
-        createElementsSearch();
+        createElementsBySearch();
     }
 })
 
@@ -448,8 +451,10 @@ aNext.addEventListener("click", async () => {
     }
 })
 
-window.onload = async() => {
+window.onload = async () => {
     sessionActive();
-   await getTvShows();
-   createElements();
+    await getTvShows();
+    createElements();
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

@@ -15,7 +15,9 @@ function sessionActive() {
             imgMarvel.href = "../index.html"
             let divLogOut = document.createElement('div');
             divLogOut.classList.add("containerLogout")
-            bntGetStarted.remove()
+            if (bntGetStarted != null){
+                bntGetStarted.remove()
+            }
             logOut = document.createElement('a');
             logOut.classList.add("logOut")
             logOut.textContent = "Log Out"

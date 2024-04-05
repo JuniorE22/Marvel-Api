@@ -1,4 +1,4 @@
-import {sessionActive} from "../main.js"
+import { sessionActive } from "../main.js"
 
 let allGamesData = [];
 let allPagination = [];
@@ -15,7 +15,6 @@ let aNext = document.createElement("a");
 
 const getGames = async (params = {}) => {
     try {
-        debugger
         const mainParams = {
             title: params.title,
             ts: '1',
@@ -44,20 +43,26 @@ const createElements = () => {
 
     allGamesData.forEach(gamesData => {
         let divCol = document.createElement("div")
-        let column = document.createElement("div")
+        let column = document.createElement("a")
         let imgGames = document.createElement("img");
         let divDescription = document.createElement("div");
         let titleGames = document.createElement("h4");
         let premiereGames = document.createElement("p");
-        
+
         divCol.className = "col"
-        divCol.style = "padding-bottom: 10px"
-        column.className = "card";
-        column.style = "width: 13rem";
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        console.log(gamesData.id)
+        column.href = "./detailsGames.html?events=events?id=" + gamesData.id
         imgGames.className = "card-img-top";
         imgGames.src = `${gamesData.thumbnail.path}.${gamesData.thumbnail.extension}`
         divDescription.className = "card-body";
+        divDescription.style = "background-color: #202020; text-align: center;"
         titleGames.className = "card-text";
+        titleGames.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleGames.className = "card-title text-truncate";
         titleGames.setAttribute('data-bs-toggle', "tooltip")
         titleGames.setAttribute('data-bs-placement', "top")
@@ -72,43 +77,49 @@ const createElements = () => {
         divDescription.appendChild(titleGames);
         divDescription.appendChild(premiereGames);
     })
-} 
+}
 
-const createElementsSearch = () => {
-        paginationContainer.innerHTML = ""
-        createPaginationSearch();
-        rowContainer.innerHTML = "";
+const createElementsBySearch = () => {
+    paginationContainer.innerHTML = ""
+    createPaginationBySearch();
+    rowContainer.innerHTML = "";
 
-        allGamesData.forEach(gamesData => {
-    
-            let divCol = document.createElement("div")
-            let column = document.createElement("a")
-            let imgGames = document.createElement("img");
-            let divDescription = document.createElement("div");
-            let titleGames = document.createElement("h5");
-            let premiereGames = document.createElement("p");
-    
-            divCol.className = "col"
-            divCol.style = "padding-bottom: 10px"
-            column.className = "card";
-            column.style = "width: 13rem";
-            imgGames.className = "card-img-top";
-            imgGames.src = `${gamesData.thumbnail.path}.${gamesData.thumbnail.extension}`
-            divDescription.className = "card-body";
-            titleGames.className = "card-text";
-            titleGames.className = "card-title text-truncate";
-            titleGames.setAttribute('data-bs-toggle', "tooltip")
-            titleGames.setAttribute('data-bs-placement', "top")
-            titleGames.setAttribute('data-bs-title', `${gamesData.title}`)
-            titleGames.textContent = gamesData.title;
-    
-            rowContainer.appendChild(divCol);
-            divCol.appendChild(column);
-            column.appendChild(imgGames);
-            column.appendChild(divDescription);
-            divDescription.appendChild(titleGames);
-            divDescription.appendChild(premiereGames);
-        })
+    allGamesData.forEach(gamesData => {
+
+        let divCol = document.createElement("div")
+        let column = document.createElement("a")
+        let imgGames = document.createElement("img");
+        let divDescription = document.createElement("div");
+        let titleGames = document.createElement("h5");
+        let premiereGames = document.createElement("p");
+
+        divCol.className = "col"
+        divCol.style = "padding-bottom: 3rem"
+        column.className = "card border-color";
+        column.style = "border-color: black;"
+        column.href = "./detailsGames.html?events=events?id=" + gamesData.id
+        imgGames.className = "card-img-top";
+        imgGames.src = `${gamesData.thumbnail.path}.${gamesData.thumbnail.extension}`
+        divDescription.className = "card-body"; 
+        divDescription.style = "background-color: #202020; text-align: center;"
+        titleGames.className = "card-text";
+        titleGames.style = " color: white;"
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        titleGames.className = "card-title text-truncate";
+        titleGames.setAttribute('data-bs-toggle', "tooltip")
+        titleGames.setAttribute('data-bs-placement', "top")
+        titleGames.setAttribute('data-bs-title', `${gamesData.title}`)
+        titleGames.textContent = gamesData.title;
+        premiereGames.textContent = gamesData.type;
+
+        rowContainer.appendChild(divCol);
+        divCol.appendChild(column);
+        column.appendChild(imgGames);
+        column.appendChild(divDescription);
+        divDescription.appendChild(titleGames);
+        divDescription.appendChild(premiereGames);
+    })
 }
 const createPagination = () => {
 
@@ -148,13 +159,13 @@ const createPagination = () => {
                 paginationContainer.appendChild(liPagination);
                 liPagination.appendChild(aPage);
             }
-            
+
             paginationContainer.appendChild(liPagination);
             liPagination.appendChild(aPage);
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -175,7 +186,7 @@ const createPagination = () => {
 
         aPage.addEventListener("click", async () => {
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
             const params = buildParams();
@@ -250,7 +261,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -294,7 +305,7 @@ const createPagination = () => {
 
             aPage.addEventListener("click", async () => {
                 aPage.href = "#";
-                currentPage = aPage.textContent
+                currentPage = parseInt(aPage.textContent)
                 liPagination.className = "page-item active";
 
                 const params = buildParams();
@@ -319,7 +330,7 @@ const createPagination = () => {
     liNext.appendChild(aNext);
 }
 
-const createPaginationSearch = () => {
+const createPaginationBySearch = () => {
 
     liPrevious.className = "page-item disabled";
     aPrevious.className = "page-link";
@@ -355,12 +366,12 @@ const createPaginationSearch = () => {
 
         aPage.addEventListener("click", async () => {
             aPage.href = "#";
-            currentPage = aPage.textContent
+            currentPage = parseInt(aPage.textContent)
             liPagination.className = "page-item active";
 
-            const params = buildParamsSearch();
+            const params = buildParamsBySearch();
             await getGames(params);
-            createElementsSearch();
+            createElementsBySearch();
         })
     }
 
@@ -393,7 +404,7 @@ const previeousPage = async () => {
     createElements();
 }
 
-const buildParamsSearch = () => {
+const buildParamsBySearch = () => {
     const params = {
         title: encodeURIComponent(inputSearch.value),
         ts: '1',
@@ -409,7 +420,7 @@ const buildParams = () => {
         ts: '1',
         apikey: 'f261b7a9df35311738cdc220e78c3bf9',
         hash: '8147a92999450be7f35b0b0003b77eed',
-        offset: currentPage - 1,
+        offset: currentPage,
     };
     return params;
 }
@@ -419,9 +430,9 @@ btnSearch.addEventListener("click", async () => {
         btnSearch.href = window.location.search
     } else {
         currentPage = 1;
-        const params = buildParamsSearch();
+        const params = buildParamsBySearch();
         await getGames(params);
-        createElementsSearch();
+        createElementsBySearch();
     }
 })
 
@@ -443,8 +454,10 @@ aNext.addEventListener("click", async () => {
     }
 })
 
-window.onload = async() => {
+window.onload = async () => {
     sessionActive();
-   await getGames();
-   createElements();
+    await getGames();
+    createElements();
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

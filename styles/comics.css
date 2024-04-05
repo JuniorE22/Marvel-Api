@@ -121,24 +121,33 @@
     display: block; 
     width: 100%; 
     padding-bottom: 2%;
+}
+
+.list-text{
+    padding-bottom: 2%;
+    padding-left: 2%;
+}
+.card {
+    width: 15rem;
     
 }
-
-
-
-
-
-
 .card-img-top{
-    height: 150px;
+    height: 250px;
     width: 150px;
+    border-width: 0px;
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 1px;
+    border-style: solid;
 }
 .col {
-    width: 100%;
+    width: 50%;
 }
+
 .cta-btn{
 display: none;
 }
+
 #rowContainer {
     margin-left: 3%;
     margin-bottom: 2%;
