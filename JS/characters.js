@@ -54,7 +54,7 @@ const createElements = () => {
         divCol.style = "padding-bottom: 5rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsCharacters.html?characters=characters?id=" + characterData.id
+        column.href = "./detailsCharacters.html?public=characters&id=" + characterData.id
         imgCharacter.className = "card-img-top";
         imgCharacter.src = `${characterData.thumbnail.path}.${characterData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -94,7 +94,7 @@ const createElementsBySearch = () => {
         divCol.style = "padding-bottom: 5rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsCharacters.html?characters=characters?id=" + characterData.id
+        column.href = "./detailsCharacters.html?public=characters&id=" + characterData.id
         imgCharacter.className = "card-img-top";
         imgCharacter.src = `${characterData.thumbnail.path}.${characterData.thumbnail.extension}`
         divDescription.className = "card-body";

@@ -1,19 +1,13 @@
 import { sessionActive } from "../main.js"
 
-const URL_ID = new URLSearchParams(window.location.search)
-const GET_PUBLIC = URL_ID.getAll('characters')
-let Url_Public = "";
-URL_ID.forEach((value, key) => {
-    debugger
-        console.log(value);
-        Url_Public = value;
-}); 
-const GET_URL = `http://gateway.marvel.com/v1/public/${Url_Public}`
-
+const params = new URLSearchParams(window.location.search)
+let GET_PUBLIC = params.get("public")
+let GET_ID = params.get("id")
+const GET_URL = `http://gateway.marvel.com/v1/public/${GET_PUBLIC}?id=${GET_ID}`
 const animeRow = document.querySelector("#rowContainer")
 const detailsContainer = document.querySelector("#containerText")
-
 let allCharactersData = []
+
 const getDetails = async () => {
     try {
         const mainParams = {
@@ -58,14 +52,18 @@ const createElements = () => {
         columnDiv.style = "width: 13rem";
 
         rowColumsDiv.className = "col-md-3 shadow-lg p-3 rounded"
+        rowColumsDiv.style = "padding-right: 2%;"
         divDetails.className = "col-md-9"
-        divDetails.style = "padding-top: 2%"
+        divDetails.style = "padding-top: 2%; padding-left: 3%"
+
         titleDescriptionCharacters.className = "col-md-3"
         descriptionCharacters.classList = "overflow-auto col-md text-center"
         descriptionCharacters.style = "max-height: 240px";
         imgCharacters.className = "card-img-top";
         imgCharacters.src = `${CharactersData.thumbnail.path}.${CharactersData.thumbnail.extension}`
         divDescription.className = "card-body";
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleCharacters.className = "card-title text-truncate";
         titleCharacters.setAttribute('data-bs-toggle', "tooltip")
         titleCharacters.setAttribute('data-bs-placement', "top")
@@ -78,8 +76,8 @@ const createElements = () => {
         titleDescriptionCharacters.textContent = "Description"
         if (CharactersData.description == null || CharactersData.description == "") {
             CharactersData.description = "Marvel 100th Anniversary Special is a Marvel Comics limited series. The basic premise is that each comic in the series is from the year 2061," +
-            "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
-        }else{
+                "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
+        } else {
             descriptionCharacters.textContent = CharactersData.description;
         }
         descriptionCharacters.textContent = CharactersData.description;

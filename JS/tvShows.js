@@ -54,7 +54,7 @@ const createElements = () => {
         divCol.style = "padding-bottom: 3rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsTvShows.html?series=series?id=" + tvShowsData.id
+        column.href = "./detailsTvShows.html?public=series&id=" + tvShowsData.id
         imgTvShow.className = "card-img-top";
         imgTvShow.src = `${tvShowsData.thumbnail.path}.${tvShowsData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -95,7 +95,7 @@ const createElementsBySearch = () => {
         divCol.style = "padding-bottom: 3rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsTvShows.html?series=series?id=" + tvShowsData.id
+        column.href = "./detailsTvShows.html?public=series&id=" + tvShowsData.id
         imgTvShow.className = "card-img-top";
         imgTvShow.src = `${tvShowsData.thumbnail.path}.${tvShowsData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -455,6 +455,4 @@ window.onload = async () => {
     sessionActive();
     await getTvShows();
     createElements();
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

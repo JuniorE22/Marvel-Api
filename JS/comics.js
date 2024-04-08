@@ -52,7 +52,7 @@ const createElements = () => {
         divCol.style = "padding-bottom: 3rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsComics.html?comics=comics?id=" + comicsData.id
+        column.href = "./detailsComics.html?public=comics&id=" + comicsData.id
         imgComics.className = "card-img-top";
         imgComics.src = `${comicsData.thumbnail.path}.${comicsData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -95,7 +95,7 @@ const createElementsBySearch = () => {
         divCol.style = "padding-bottom: 3rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsComics.html?comics=comics?id=" + comicsData.id
+        column.href = "./detailsComics.html?public=comics&id=" + comicsData.id
         imgComics.className = "card-img-top";
         imgComics.src = `${comicsData.thumbnail.path}.${comicsData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -452,5 +452,4 @@ window.onload = async () => {
     sessionActive();
     await getComics();
     createElements();
-
 }

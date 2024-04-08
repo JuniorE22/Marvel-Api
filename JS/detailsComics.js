@@ -1,19 +1,13 @@
 import { sessionActive } from "../main.js"
 
-const URL_ID = new URLSearchParams(window.location.search)
-const GET_PUBLIC = URL_ID.getAll('comics')
-let Url_Public = "";
-URL_ID.forEach((value, key) => {
-    debugger
-        console.log(value);
-        Url_Public = value;
-}); 
-const GET_URL = `http://gateway.marvel.com/v1/public/${Url_Public}`
-
+const params = new URLSearchParams(window.location.search)
+let GET_PUBLIC = params.get("public")
+let GET_ID = params.get("id")
+const GET_URL = `http://gateway.marvel.com/v1/public/${GET_PUBLIC}?id=${GET_ID}`
 const animeRow = document.querySelector("#rowContainer")
 const detailsContainer = document.querySelector("#containerText")
-
 let allComicsData = []
+
 const getDetails = async () => {
     try {
         const mainParams = {
@@ -59,13 +53,15 @@ const createElements = () => {
 
         rowColumsDiv.className = "col-md-3 p-3 shadow-lg rounded"
         divDetails.className = "col-md-9"
-        divDetails.style = "padding-top: 2%"
+        divDetails.style = "padding-top: 2%; padding-left: 3%;"
         TitleDescriptionComics.className = "col-md-3"
         descriptionComics.classList = "overflow-auto col-md text-center"
         descriptionComics.style = "max-height: 240px";
         imgComics.className = "card-img-top";
         imgComics.src = `${ComicsData.thumbnail.path}.${ComicsData.thumbnail.extension}`
         divDescription.className = "card-body";
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         titleComics.className = "card-title text-truncate";
         titleComics.setAttribute('data-bs-toggle', "tooltip")
         titleComics.setAttribute('data-bs-placement', "top")
@@ -78,8 +74,8 @@ const createElements = () => {
         TitleDescriptionComics.textContent = "Description"
         if (ComicsData.description == null || ComicsData.description == "") {
             ComicsData.description = "Marvel 100th Anniversary Special is a Marvel Comics limited series. The basic premise is that each comic in the series is from the year 2061," +
-            "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
-        }else{
+                "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
+        } else {
             descriptionComics.textContent = ComicsData.description;
         }
         descriptionComics.textContent = ComicsData.description;

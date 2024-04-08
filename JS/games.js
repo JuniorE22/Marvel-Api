@@ -54,7 +54,7 @@ const createElements = () => {
         column.className = "card border-color";
         column.style = "border-color: black;"
         console.log(gamesData.id)
-        column.href = "./detailsGames.html?events=events?id=" + gamesData.id
+        column.href = "./detailsGames.html?public=events&id=" + gamesData.id
         imgGames.className = "card-img-top";
         imgGames.src = `${gamesData.thumbnail.path}.${gamesData.thumbnail.extension}`
         divDescription.className = "card-body";
@@ -97,10 +97,10 @@ const createElementsBySearch = () => {
         divCol.style = "padding-bottom: 3rem"
         column.className = "card border-color";
         column.style = "border-color: black;"
-        column.href = "./detailsGames.html?events=events?id=" + gamesData.id
+        column.href = "./detailsGames.html?public=events&id=" + gamesData.id
         imgGames.className = "card-img-top";
         imgGames.src = `${gamesData.thumbnail.path}.${gamesData.thumbnail.extension}`
-        divDescription.className = "card-body"; 
+        divDescription.className = "card-body";
         divDescription.style = "background-color: #202020; text-align: center;"
         titleGames.className = "card-text";
         titleGames.style = " color: white;"
@@ -458,6 +458,4 @@ window.onload = async () => {
     sessionActive();
     await getGames();
     createElements();
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 }

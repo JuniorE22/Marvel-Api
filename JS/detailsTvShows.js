@@ -1,19 +1,13 @@
 import { sessionActive } from "../main.js"
 
-const URL_ID = new URLSearchParams(window.location.search)
-const GET_PUBLIC = URL_ID.getAll('series')
-let Url_Public = "";
-URL_ID.forEach((value, key) => {
-    debugger
-    console.log(value);
-    Url_Public = value;
-});
-const GET_URL = `http://gateway.marvel.com/v1/public/${Url_Public}`
-
+const params = new URLSearchParams(window.location.search)
+let GET_PUBLIC = params.get("public")
+let GET_ID = params.get("id")
+const GET_URL = `http://gateway.marvel.com/v1/public/${GET_PUBLIC}?id=${GET_ID}`
 const animeRow = document.querySelector("#rowContainer")
 const detailsContainer = document.querySelector("#containerText")
-
 let alltvShowData = []
+
 const getDetails = async () => {
     try {
         const mainParams = {
@@ -28,8 +22,7 @@ const getDetails = async () => {
 
         const responseData = response.data.data;
         alltvShowData = responseData.results;
-        console.log(responseData)
-        console.log(tvShowData)
+        console.log(alltvShowData)
 
     } catch (error) {
         console.log(error)
@@ -60,7 +53,7 @@ const createElements = () => {
 
         rowColumsDiv.className = "col-md-3 shadow-lg p-3 rounded"
         divDetails.className = "col-md-9"
-        divDetails.style = "padding-top: 2%"
+        divDetails.style = "padding-top: 2%; padding-left: 3%;"
         TitleDescriptionTvShow.className = "col-md-3"
         descriptionTvShow.classList = "overflow-auto col-md text-center"
         descriptionTvShow.style = "max-height: 240px";
@@ -78,14 +71,14 @@ const createElements = () => {
         modifiedTvShow.className = "col-md-6";
         yearEndTvShow.className = "col-md-6";
 
-        
+
         TitleDescriptionTvShow.textContent = "Description"
         descriptionTvShow.textContent = tvShowData.description;
         startYearTvShow.textContent = `Start Year: ${tvShowData.startYear}`
         if (tvShowData.description == null) {
             descriptionTvShow.textContent = "Marvel 100th Anniversary Special is a Marvel Comics limited series. The basic premise is that each comic in the series is from the year 2061," +
-            "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
-        }else{
+                "and depicts how the Marvel Universe may look once it reaches its 100th anniversary (well, its 100th anniversary as Marvel - it began life as Timely Comics in 1939)."
+        } else {
             descriptionTvShow.textContent = tvShowData.description;
         }
         modifiedTvShow.textContent = `Modified: ${tvShowData.modified}`
